@@ -29,5 +29,8 @@ namespace FalloutChat.Data
         {
             return new ApplicationDbContext();
         }
+        public DbSet<ChatHistory> ChatHistories { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionVote> QuestionVotes { get; set; }
     }
 }

@@ -48,11 +48,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatHistoryCreate.cs" />
+    <Compile Include="ChatHistoryEdit.cs" />
+    <Compile Include="ChatHistoryListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionCreate.cs" />
+    <Compile Include="QuestionEdit.cs" />
+    <Compile Include="QuestionListItem.cs" />
+    <Compile Include="QuestionVoteCreate.cs" />
+    <Compile Include="QuestionVoteEdit.cs" />
+    <Compile Include="QuestionVoteListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FalloutChat.Data\FalloutChat.Data.csproj">
+      <Project>{49d6217a-c193-4a3d-99b3-7600a84d5b16}</Project>
+      <Name>FalloutChat.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
