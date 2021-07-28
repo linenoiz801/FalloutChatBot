@@ -15,6 +15,10 @@ namespace FalloutChat.Services
         {
             _userId = userId;
         }
+        public ChatHistoryCreate SendQuestion(ChatHistoryCreate model)
+        {
+            //TODO: ??? :(
+        }
         public bool CreateChatHistory(ChatHistoryCreate model)
         {
             var entity =
@@ -40,6 +44,7 @@ namespace FalloutChat.Services
                 var query =
                     ctx
                         .ChatHistories
+                        .Where(g => g.UserId == _userId)
                         .Select(
                             e =>
                                 new ChatHistoryListItem

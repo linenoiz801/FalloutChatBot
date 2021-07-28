@@ -51,6 +51,7 @@
     <Compile Include="ChatHistoryCreate.cs" />
     <Compile Include="ChatHistoryEdit.cs" />
     <Compile Include="ChatHistoryListItem.cs" />
+    <Compile Include="FNVBotResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionCreate.cs" />
     <Compile Include="QuestionEdit.cs" />
