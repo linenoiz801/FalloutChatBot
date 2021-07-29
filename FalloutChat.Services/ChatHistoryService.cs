@@ -15,12 +15,15 @@ namespace FalloutChat.Services
         {
             _userId = userId;
         }
-        public ChatHistoryCreate SendQuestion(ChatHistoryCreate model)
+        private ChatHistoryCreate SendQuestion(ChatHistoryCreate model)
         {
-            //TODO: ??? :(
+            FNVBotService service = new FNVBotService();
+            model = service.SubmitQuestion(model);
+            return model;
         }
         public bool CreateChatHistory(ChatHistoryCreate model)
         {
+            SendQuestion(model);
             var entity =
                 new ChatHistory()
                 {

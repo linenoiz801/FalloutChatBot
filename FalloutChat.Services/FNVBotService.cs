@@ -35,14 +35,22 @@ namespace FalloutChat.Services
 
                 QuestionBody qb = new QuestionBody() { question = model.MessageSent };
 
-                //var content = new StringContent(jsonObject.ToString(), Enconding.UTF8, "")
-
+                model.SentTimeUtc = DateTime.UtcNow;
                 HttpResponseMessage res = client.PostAsync(_route, new StringContent(new JavaScriptSerializer().Serialize(qb), Encoding.UTF8, "application/json")).Result;
                 if (res.IsSuccessStatusCode)
                 {
                     List<FNVBotRoot> FNVBotInfo = new List<FNVBotRoot>();
                     var Response = res.Content.ReadAsStringAsync().Result;
                     FNVBotInfo = JsonConvert.DeserializeObject<List<FNVBotRoot>>(Response);
+                    //Iterate the list (should only be one object) and fill out the model with the answer to the submitted question (should only be one answer).
+                    model.ReceviedTimeUtc = DateTime.UtcNow;
+                    foreach (FNVBotRoot r in FNVBotInfo)
+                    {
+                        foreach (FNVBotAnswer a in r.answers)
+                        {
+                            model.ResponseReceived = a.answer;
+                        }
+                    }
                 }
                 return model;
             }
