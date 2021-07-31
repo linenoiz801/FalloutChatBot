@@ -17,20 +17,30 @@ namespace FalloutChat.Services
         }
         public bool CreateQuestionVote(QuestionVoteCreate model)
         {
-            var entity =
-                new QuestionVote()
-                {
-                    QuestionId = model.QuestionId,
-                    GoodQuestion = model.GoodQuestion,
-                    UserId = _userId
-                };
             using (var ctx = new ApplicationDbContext())
             {
+                var entity =
+                ctx
+                    .QuestionVotes
+                    .Single(e => (e.Id == model.QuestionId) && (e.UserId == _userId));
+                if (entity != null)
+                {
+                    DeleteQuestionVote(entity.Id);
+                }            
+
+                entity =
+                    new QuestionVote()
+                    {
+                        QuestionId = model.QuestionId,
+                        GoodQuestion = model.GoodQuestion,
+                        UserId = _userId
+                    };
+
                 ctx.QuestionVotes.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<QuestionVoteListItem> GetQuestionVotes()
+        public IEnumerable<QuestionVoteListItem> GetQuestionVotesByUserId()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -55,7 +65,7 @@ namespace FalloutChat.Services
             }
         }
         public QuestionVoteListItem GetQuestionVoteById(int id)
-        {            
+        {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -67,10 +77,31 @@ namespace FalloutChat.Services
                     {
                         Id = entity.Id,
                         QuestionId = entity.QuestionId,
-                        Question = 
+                        Question =
                             ctx.Questions.Single(f => f.Id == entity.QuestionId),
-                        GoodQuestion = entity.GoodQuestion                        
+                        GoodQuestion = entity.GoodQuestion
                     };
+            }
+        }
+        public IEnumerable<QuestionVoteListItem> GetQuestionVoteByQuestionId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .QuestionVotes
+                        .Where(e => e.QuestionId == id)
+                        .Select(
+                            f => new QuestionVoteListItem()
+                            {
+                                Id = f.Id,
+                                QuestionId = f.QuestionId,
+                                Question =
+                                    ctx.Questions.Single(g => g.Id == f.QuestionId),
+                                GoodQuestion = f.GoodQuestion
+                            }
+                        );
+                return entity.ToArray();
             }
         }
         public bool UpdateQuestionVote(QuestionVoteEdit model)

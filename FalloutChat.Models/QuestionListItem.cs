@@ -18,5 +18,7 @@ namespace FalloutChat.Models
         public Guid UserId { get; set; }
         [DefaultValue(false)]
         public bool QuestionAdded { get; set; }
+        public virtual int UpVoteCount { get; set;  }
+        public virtual int DownVoteCount { get; set; }
     }
 }
