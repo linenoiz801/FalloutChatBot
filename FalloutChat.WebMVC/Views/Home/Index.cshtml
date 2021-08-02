@@ -6,7 +6,10 @@
     <h1>Fallout New Vegas Chat Bot</h1>
     <p class="lead">Fallout New Vegas Chat Bot is an bot that uses Natural Language Processing AI to turn your questions into answers. You have a question? FNV Bot has an answer (if your question is in the list of 50 or so answers that have been created).</p>
     @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
-    [ @Html.ActionLink("New Questions", "Index", "Question") ]@*, null, new { @class = "btn btn-primary" })*@
-    [ @Html.ActionLink("Start Chatting", "Index", "ChatHistory") ]@*, null, new { @class = "btn btn-primary" })*@
+
+<ul>
+    <li>@Html.ActionLink("New Questions", "Index", "Question")</li>
+    <li>@Html.ActionLink("Start Chatting", "Index", "ChatHistory")</li>
+</ul>
 </div>
 
