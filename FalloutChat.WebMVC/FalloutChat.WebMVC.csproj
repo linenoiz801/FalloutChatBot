@@ -185,6 +185,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\TerminalStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -240,14 +241,13 @@
     <Content Include="Views\ChatHistory\Index.cshtml" />
     <Content Include="Views\ChatHistory\Delete.cshtml" />
     <Content Include="Views\Question\Details.cshtml" />
-    <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\Question\Create.cshtml" />
     <Content Include="Views\Question\Edit.cshtml" />
     <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\QuestionVote\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

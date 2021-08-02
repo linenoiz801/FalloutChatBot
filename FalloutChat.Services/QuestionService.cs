@@ -11,6 +11,17 @@ namespace FalloutChat.Services
     public class QuestionService
     {
         private readonly Guid _userId;
+        private int GetVoteCount(int id, bool UpVote)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return
+                    ctx
+                        .QuestionVotes
+                        .Where(e => (e.QuestionId == id && e.GoodQuestion == UpVote))
+                        .Count();
+            }
+        }
         public QuestionService(Guid userId)
         {
             _userId = userId;
@@ -38,6 +49,7 @@ namespace FalloutChat.Services
                 var query =
                     ctx
                         .Questions
+                        .AsEnumerable()
                         .Select(
                             e =>
                                 new QuestionListItem
@@ -46,7 +58,9 @@ namespace FalloutChat.Services
                                     Id = e.Id,
                                     QuestionText = e.QuestionText,
                                     QuestionAdded = e.QuestionAdded,
-                                    Answer = e.Answer
+                                    Answer = e.Answer,
+                                    DownVoteCount = GetVoteCount(e.Id, false),
+                                    UpVoteCount = GetVoteCount(e.Id, true)
                                 }
                         );
 
@@ -68,7 +82,9 @@ namespace FalloutChat.Services
                         UserId = entity.UserId,
                         Answer = entity.Answer,
                         QuestionAdded = entity.QuestionAdded,
-                        QuestionText = entity.QuestionText
+                        QuestionText = entity.QuestionText,
+                        DownVoteCount = GetVoteCount(entity.Id, false),
+                        UpVoteCount = GetVoteCount(entity.Id, true)
                     };
             }
         }

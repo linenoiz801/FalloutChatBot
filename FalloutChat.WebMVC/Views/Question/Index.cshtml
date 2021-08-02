@@ -18,34 +18,43 @@
             @Html.DisplayNameFor(model => model.Answer)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.QuestionAdded)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QuestionAdded)
+            @Html.DisplayNameFor(model => model.UpVoteCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DownVoteCount)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionText)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Answer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionAdded)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpVoteCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownVoteCount)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                @Html.ActionLink("Up Vote", "UpVote", new { id = item.Id }) |
+                @Html.ActionLink("Down Vote", "DownVote", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

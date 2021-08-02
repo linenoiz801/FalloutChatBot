@@ -19,16 +19,24 @@ namespace FalloutChat.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                int count =
                 ctx
                     .QuestionVotes
-                    .Single(e => (e.Id == model.QuestionId) && (e.UserId == _userId));
-                if (entity != null)
-                {
-                    DeleteQuestionVote(entity.Id);
-                }            
+                    .Count(e => (e.QuestionId == model.QuestionId) && (e.UserId == _userId));
 
-                entity =
+                if (count > 0)
+                {
+                    var ent =
+                    ctx
+                        .QuestionVotes
+                        .Single(e => (e.QuestionId == model.QuestionId) && (e.UserId == _userId));
+                    if (ent != null)
+                    {
+                        DeleteQuestionVote(ent.Id);
+                    }
+                }
+
+                var entity =
                     new QuestionVote()
                     {
                         QuestionId = model.QuestionId,
@@ -83,7 +91,7 @@ namespace FalloutChat.Services
                     };
             }
         }
-        public IEnumerable<QuestionVoteListItem> GetQuestionVoteByQuestionId(int id)
+        public IEnumerable<QuestionVoteListItem> GetQuestionVotesByQuestionId(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {

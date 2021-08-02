@@ -121,5 +121,31 @@ namespace FalloutChat.WebMVC.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpGet]                
+        public ActionResult UpVote(int id)
+        {
+            QuestionVoteCreate qv = new QuestionVoteCreate
+            {
+                GoodQuestion = true,
+                QuestionId = id
+            };
+
+            var service = new QuestionVoteService(Guid.Parse(User.Identity.GetUserId()));
+            service.CreateQuestionVote(qv);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]                
+        public ActionResult DownVote(int id)
+        {
+            QuestionVoteCreate qv = new QuestionVoteCreate
+            {
+                GoodQuestion = false,
+                QuestionId = id
+            };
+
+            var service = new QuestionVoteService(Guid.Parse(User.Identity.GetUserId()));
+            service.CreateQuestionVote(qv);
+            return RedirectToAction("Index");
+        }
     }
 }
