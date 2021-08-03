@@ -47,10 +47,10 @@
                 @*@Html.ActionLink("Up Vote", "UpVote", new { id = item.Id }) |
         @Html.ActionLink("Down Vote", "DownVote", new { id = item.Id })*@
                 <a href="@Url.Action("UpVote", new { id = item.Id })" title="Up Vote" >
-                    <img alt="Up Vote" src="@Url.Content("~/Assets/UpVote.png")" class="votelink"/>
-                </a> | 
+                    <img alt="Up Vote" src="@Url.Content("https://i.ibb.co/pZ6bWvt/upvote.png")" class="votelink"/>
+                </a>
                 <a href="@Url.Action("DownVote", new { id = item.Id })" title="Down Vote">
-                    <img alt="Down Vote" src="@Url.Content("~/Assets/DownVote.png")" class="votelink" />
+                    <img alt="Down Vote" src="@Url.Content("https://i.ibb.co/kmDWYHW/downvote.png")" class="votelink" />
                 </a>
             </td>
         </tr>
