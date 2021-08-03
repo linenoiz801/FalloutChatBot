@@ -11,6 +11,7 @@ namespace FalloutChat.Models
     public class QuestionCreate
     {
         [Required]
+        [Display(Name ="Question")]
         public string QuestionText { get; set; }
         [Required]
         public string Answer { get; set; }

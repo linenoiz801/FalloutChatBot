@@ -26,7 +26,7 @@
     }
 
     100% {
-        width: 100;
+        width: 100%;
     }
 }
 
@@ -54,8 +54,8 @@ html,
 body {
     background: #383838;
     color: #00dd00;
-    font-size: 64.5%;
-    font-size: 1.4em;
+    font-size: 50%;
+    font-size: 1em;
     font-family: 'VT323', Courier;
     height: 100%;
     margin: 0;
@@ -211,14 +211,16 @@ label {
 }
 
 input[type=text],
-textarea {
+textarea,
+input[type=password]
+{
     background: transparent;
     border: none;
     color: #00dd00;
     display: block;
     float: left;
     font-family: 'VT323', Courier;
-    font-size: 1.2em;
+    font-size: 1em;
     position: relative;
     width: 95%;
     max-width: 100% !important;
@@ -226,7 +228,8 @@ textarea {
 }
 
 textarea {
-    margin-bottom: 20px overflow: auto;
+    margin-bottom: 20px; 
+    overflow: auto;
     resize: none;
 }
 
@@ -243,7 +246,7 @@ a.button {
     border: 1px solid #00dd00;
     clear: both;
     color: #00dd00;
-    cursor: hand;
+    cursor: grab;
     display: inline-block;
     font-family: 'VT323', Courier;
     font-size: 1em;
@@ -278,4 +281,9 @@ a.button {
 
 .upper {
     text-transform: uppercase;
+}
+
+.votelink {
+    height: 16px;
+    width: 16px;
 }

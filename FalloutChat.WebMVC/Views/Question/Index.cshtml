@@ -4,8 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h1>User Submitted Questions</h1>
+</br>
+<p>Review the submitted questions below. If you like the question and answer, give it an up vote. If you don't like them, give it a down vote. When a question recieves enough up votes, it will be added to the knowledge base and be available for the bot to use.</p>
+</br>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -16,9 +18,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Answer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionAdded)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UpVoteCount)
@@ -39,20 +38,20 @@
                 @Html.DisplayFor(modelItem => item.Answer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.QuestionAdded)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.UpVoteCount)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DownVoteCount)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
-                @Html.ActionLink("Up Vote", "UpVote", new { id = item.Id }) |
-                @Html.ActionLink("Down Vote", "DownVote", new { id = item.Id })
+                @*@Html.ActionLink("Up Vote", "UpVote", new { id = item.Id }) |
+        @Html.ActionLink("Down Vote", "DownVote", new { id = item.Id })*@
+                <a href="@Url.Action("UpVote", new { id = item.Id })" title="Up Vote" >
+                    <img alt="Up Vote" src="@Url.Content("~/Assets/UpVote.png")" class="votelink"/>
+                </a> | 
+                <a href="@Url.Action("DownVote", new { id = item.Id })" title="Down Vote">
+                    <img alt="Down Vote" src="@Url.Content("~/Assets/DownVote.png")" class="votelink" />
+                </a>
             </td>
         </tr>
     }
