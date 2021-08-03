@@ -1,0 +1,23 @@
+﻿@model FalloutChat.Models.ChatHistoryCreate
+
+@{
+    ViewBag.Title = "_CreatePartial";
+}
+
+@using (Html.BeginForm("Create", "ChatHistory"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-lg-10" style="border:4px; border-color:green; border-style:solid">
+                @Html.TextAreaFor(model => model.MessageSent, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ask Away" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

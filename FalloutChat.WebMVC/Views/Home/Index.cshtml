@@ -5,11 +5,32 @@
 <div style="background:transparent !important" class="jumbotron">
     <h1>Fallout New Vegas Chat Bot</h1>
     <p class="lead">Fallout New Vegas Chat Bot is an bot that uses Natural Language Processing AI to turn your questions into answers. You have a question? FNV Bot has an answer (if your question is in the list of 50 or so answers that have been created).</p>
-    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 
-<ul>
-    <li>@Html.ActionLink("New Questions", "Index", "Question")</li>
-    <li>@Html.ActionLink("Start Chatting", "Index", "ChatHistory")</li>
-</ul>
+<div class="navbar navbar-inverse" style="background: #383838 !important; border: none" >
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-collapse collapse">
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("New Questions", "Index", "Question")</li>
+                        <li>@Html.ActionLink("Start Chatting", "Index", "ChatHistory")</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 

@@ -22,7 +22,8 @@ namespace FalloutChat.WebMVC.Controllers
         {
             var Service = CreateChatHistoryService();
             var model = Service.GetChatHistories();
-            return View(model);
+            var tuple = new Tuple<IEnumerable<ChatHistoryListItem>, ChatHistoryCreate>(model, new ChatHistoryCreate());
+            return View(tuple);
         }
         public ActionResult Create()
         {
